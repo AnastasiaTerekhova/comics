@@ -1,5 +1,4 @@
-﻿using Accord.Video.FFMPEG;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +27,10 @@ namespace Comics
 
     public partial class MainWindow : Window
     {
-        VideoFileReader reader = new VideoFileReader();
+        public delegate void OnAdd(ImageSource img);
+        public event OnAdd AddEvent;
+
+     
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         
 
@@ -110,13 +112,14 @@ namespace Comics
             }
             bitmap.Render(dv);
             image.Source = bitmap;
+
+            AddEvent.Invoke(image.Source);
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            Window2 window2 = new Window2();
-            window2.Show();
-            this.Close();
+            this.Hide();
+            
         }
 
 

@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Comics" MinWidth="1050" MinHeight="550"
+        Title="Comics" Width="1050" Height="550"
         >
     <Grid>
         <Grid>
@@ -22,35 +22,67 @@
                 <ColumnDefinition Width="281*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="305*"/>
-                <RowDefinition Height="91*"/>
+                <RowDefinition Height="53*"/>
+                <RowDefinition Height="66*"/>
+                <RowDefinition Height="225*"/>
+                <RowDefinition Height="102*"/>
                 <RowDefinition Height="73"></RowDefinition>
 
             </Grid.RowDefinitions>
-            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="0">
+            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0">
                 <Image x:Name="image" Margin="10"/>
-                <Canvas></Canvas>
+                <InkCanvas x:Name="canvas" ResizeEnabled="True">
+                    <InkCanvas.LayoutTransform>
+
+                        <ScaleTransform ScaleX="{Binding ElementName=zoomSlider, Path=Value}"
+                                    ScaleY="{Binding ElementName=zoomSlider, Path=Value}"/>
+                    </InkCanvas.LayoutTransform>
+                </InkCanvas>
             </Grid>
-            <Grid Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="2" Grid.Row="2">
+            <Grid Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="4">
                 <Button Content="Сохранить" Height="Auto" Margin="20,19,20,23"></Button>
             </Grid>
-            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="2" Grid.Row="2" >
+            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.Row="4" >
                 <Button x:Name="Add" Click="AddButton_Click" Content="Добавить" Height="35" Width="150" 
                     Margin="10,20,350,22"/>
                 <Button Content="Удалить" Height="35" Width="150"  
                     Margin="350,20,10,22"/>
             </Grid>
-            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="1">
-            <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
+            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="3">
+                <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
                             Margin="5,5,5,5" >
                     <StackPanel x:Name="stackPanel" Margin="3,3,3,3"/>
-            </ScrollViewer>
+                </ScrollViewer>
             </Grid>
-            <Grid Grid.ColumnSpan="2" Grid.Column="2" Grid.RowSpan="1" Grid.Row="0" Background="Aquamarine">
-                <Button Background="Black" x:Name="btnColor1" Click="BtnColor_Click"
-                                Style="{StaticResource MaterialDesignFloatingActionLightButton}" 
-                        ToolTip="MaterialDesignFloatingActionLightButton" Width="30" Height="30" BorderBrush="Black">
+            <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="0" >
+                <Button  x:Name="btnPencil" Click="BtnPencil_Click" Padding="0" Height="30" Width="30" Margin="10,10,255,13">
+                    <materialDesign:PackIcon Kind="Pencil" Width="20" Height="20"/>
                 </Button>
+                
+                <Button Margin="152,10,113,13" Padding="0" Height="30" Width="30" x:Name="btnPlus" Click="BtnPlus_Click">
+                    <materialDesign:PackIcon Kind="PlusBox" Height="20" Width="20" Foreground="White"/>
+                </Button>
+                <TextBlock Text="25" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center" 
+                               FontSize="20" Foreground="Black"
+                                       x:Name="TextBoxSize" Margin="206,10,67,19" />
+                <Button Margin="255,10,10,13" Padding="0" x:Name="btnMinus" Click="BtnMinus_Click"
+                        Height="30" Width="30">
+                    <materialDesign:PackIcon Kind="MinusBox" Height="20" Width="20" Foreground="White"/>
+                </Button>
+                
+                <Grid>
+                    <Button Background="Black" x:Name="btnColor1" Click="BtnColor_Click"
+                                  Height="20" Width="30" BorderBrush="Black" Margin="5,500,5,5">
+                    </Button>
+                    <Button Background="White" x:Name="btnColor2" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="White" Margin="10,71,265,243"/>
+                    <Button Background="Gray" Margin="60,71,215,243" x:Name="btnColor3" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Gray"/>
+                    <Button Background="Red" Margin="85,71,190,243" x:Name="btnColor4" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Red"/>
+                </Grid>
+
             </Grid>
         </Grid>
     </Grid>
