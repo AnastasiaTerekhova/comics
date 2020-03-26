@@ -30,15 +30,14 @@ namespace Comics
     {
         VideoFileReader reader = new VideoFileReader();
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        private string _filePath;
-        private string FileName;
+        
 
         public MainWindow()
         {
             InitializeComponent();
             timer.Tick += new EventHandler(timerTick);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-           
+          
         }
 
             private void timerTick(object sender, object e)
@@ -57,6 +56,7 @@ namespace Comics
                 media1.Source = new Uri(openDialog.FileName);
 
             }
+            
         }
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
@@ -112,6 +112,12 @@ namespace Comics
             image.Source = bitmap;
         }
 
+        private void NextButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 window2 = new Window2();
+            window2.Show();
+            this.Close();
+        }
 
 
     }
