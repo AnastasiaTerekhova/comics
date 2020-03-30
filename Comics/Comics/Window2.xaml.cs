@@ -30,7 +30,7 @@ namespace Comics
         Brush oldBrush;
         Thickness oldThickness = new Thickness(1);
         Thickness newThickness = new Thickness(5);
-        int sizePen = 25;
+        int sizePen = 5;
        
 
         public Window2()
@@ -49,12 +49,9 @@ namespace Comics
 
             AddButton_Click(null, new RoutedEventArgs());
 
-            btnPencil.Background = brush;
-
+          
             oldBrush = btnColor1.BorderBrush.Clone();
-            btnColor1.BorderBrush = Brushes.DarkGray;
-            btnColor1.BorderThickness = newThickness;
-            
+         
             oldButton = btnColor1;
 
             canvas.EditingMode = InkCanvasEditingMode.Ink;
@@ -81,7 +78,7 @@ namespace Comics
             oldButton.BorderThickness = oldThickness;
            
             oldBrush = (sender as Button).BorderBrush.Clone();
-            (sender as Button).BorderBrush = Brushes.DarkGray;
+            (sender as Button).BorderBrush = Brushes.White;
             (sender as Button).BorderThickness = newThickness;
           
             canvas.DefaultDrawingAttributes.Color = ((sender as Button).Background as SolidColorBrush).Color;
@@ -120,6 +117,24 @@ namespace Comics
                 TextBoxSize.Text = sizePen.ToString();
                 getSizePen(sizePen);
             }
+        }
+
+        private void btn_AddText_Click(object sender, RoutedEventArgs e)
+        {
+            
+            TextBox tb = new TextBox
+            {
+                Width = 100,
+                Height = 50,
+                BorderThickness = new Thickness(0),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(5, 5, 5)),
+                Margin = new Thickness(20, 20, 0, 0)
+            };
+            
+            this.canvas.Children.Add(tb);
+            
+            tb.Focus();
+            this.canvas.EditingMode = InkCanvasEditingMode.Select;
         }
 
     }
