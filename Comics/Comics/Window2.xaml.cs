@@ -31,6 +31,7 @@ namespace Comics
         Thickness oldThickness = new Thickness(1);
         Thickness newThickness = new Thickness(5);
         int sizePen = 5;
+        Image currentImg = null;
        
 
         public Window2()
@@ -38,13 +39,15 @@ namespace Comics
             InitializeComponent();
 
             mainWindow.AddEvent += (img) => {
-                stackPanel.Children.Add(new Image()
+                var newImg = new Image()
                 {
                     Source = img.Clone(),
                     Margin = new Thickness(3, 3, 3, 3),
                     Width = 120,
                     Height = 90
-                });
+                };
+                newImg.MouseDown += image_MouseDown;
+                stackPanel.Children.Add(newImg);
             };
 
             AddButton_Click(null, new RoutedEventArgs());
@@ -57,6 +60,31 @@ namespace Comics
             canvas.EditingMode = InkCanvasEditingMode.Ink;
             canvas.DefaultDrawingAttributes.Color = Colors.Black;
             getSizePen(sizePen);
+        }
+
+        void image_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                SaveCurrentImage();
+                SetCurrentImg(sender as Image);
+            }
+        }
+
+        void SetCurrentImg(Image img)
+        {
+            currentImg = img;
+            imageInCanvas.Source = img.Source;
+        }
+
+        void SaveCurrentImage()
+        {
+            if (currentImg == null)
+                return;
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)imageInCanvas.Source.Width, (int)imageInCanvas.Source.Height, 96d, 96d, PixelFormats.Default);
+            rtb.Render(canvas);
+            currentImg.Source = rtb;
+            canvas.Strokes.Clear();
         }
 
         private void BtnPencil_Click(object sender, RoutedEventArgs e)
@@ -89,8 +117,7 @@ namespace Comics
         {
             Hide();
             mainWindow.ShowDialog();
-            Show();
-           
+            Show();           
         }
 
         private void getSizePen(int size)
@@ -120,8 +147,7 @@ namespace Comics
         }
 
         private void btn_AddText_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {            
             TextBox tb = new TextBox
             {
                 Width = 100,
@@ -137,5 +163,9 @@ namespace Comics
             this.canvas.EditingMode = InkCanvasEditingMode.Select;
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            mainWindow.Close();
+        }
     }
 }

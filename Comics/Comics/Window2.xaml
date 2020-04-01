@@ -16,7 +16,15 @@
         Title="Comics" Width="1050" Height="550"
         >
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="114*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="371*"/>
+            <ColumnDefinition Width="150*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="711*"/>
                 <ColumnDefinition Width="281*"/>
@@ -29,16 +37,18 @@
                 <RowDefinition Height="73"></RowDefinition>
 
             </Grid.RowDefinitions>
-            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0">
-                <Image x:Name="image" Margin="10"/>
-                <InkCanvas x:Name="canvas" ResizeEnabled="True" Margin="3,3,3,3">
-                    <InkCanvas.LayoutTransform>
-
-                        <ScaleTransform ScaleX="{Binding ElementName=zoomSlider, Path=Value}"
-                                    ScaleY="{Binding ElementName=zoomSlider, Path=Value}"/>
-                    </InkCanvas.LayoutTransform>
+            <Grid  Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0" >
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                              Margin="5,5,5,5" >
+                    <InkCanvas x:Name="canvas" ResizeEnabled="True" Height="auto" Width="auto" Margin="5">
+                    <Grid Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" Margin="0,0,-727,-440">
+                    <Image x:Name="imageInCanvas" Height="auto" Width="auto"/>
+                        </Grid>
                 </InkCanvas>
+                    </ScrollViewer>
             </Grid>
+            <!--<Image Source="C:\Users\User\Desktop\Курсовой\Comics\018.jpg" 
+                            Stretch="Uniform" StretchDirection="DownOnly"></Image>-->
             <Grid Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="4">
                 <Button Content="Сохранить" Height="Auto" Margin="20,19,20,23"></Button>
             </Grid>
@@ -51,7 +61,7 @@
             <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="3">
                 <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
                             Margin="5,5,5,5" >
-                    <StackPanel x:Name="stackPanel" Margin="3,3,3,3"/>
+                    <StackPanel x:Name="stackPanel" Margin="3,3,3,3" Orientation="Horizontal"/>
                 </ScrollViewer>
             </Grid>
             <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="0" >
@@ -77,29 +87,33 @@
             </Grid>
 
             <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="32*"/>
+                </Grid.ColumnDefinitions>
                 <Button Background="Black" x:Name="btnColor1" Click="BtnColor_Click"
-                                  Height="30" Width="20" BorderBrush="Black" Margin="60,17,215,19">
+                                  Height="30" Width="20" BorderBrush="Black" Margin="20.5,17,215,19" Grid.Column="1">
                 </Button>
                 <Button Background="White" x:Name="btnColor2" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Black" BorderThickness="0.5" Margin="10,17,265,19"/>
+                                Width="20" Height="30" BorderBrush="Black" BorderThickness="0.5" Margin="10,17,9.5,19"/>
                 <Button Background="Gray" Margin="35,17,240,19" x:Name="btnColor0" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Gray"/>
-                <Button Background="Red" Margin="85,17,190,19" x:Name="btnColor3" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Red"/>
-                <Button Background="Red" Margin="85,17,190,19" x:Name="btnColor4" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Red"/>
-                <Button Background="Violet" Margin="113,17,162,19" Padding="0" x:Name="btnColor5" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Violet"/>
-                <Button Background="Blue" Margin="238,17,37,19" Padding="0" x:Name="btnColor6" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Blue"/>
-                <Button Background="Teal" Margin="213,17,62,19" Padding="0" x:Name="btnColor7" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="Teal"/>
-                <Button Background="Green" Margin="188,17,87,19" Padding="0" x:Name="btnColor8" Click="BtnColor_Click"
-                                 Width="20" Height="30" BorderBrush="Green"/>
-                <Button Background="Yellow" Margin="163,17,112,19" Padding="0" x:Name="btnColor9" Click="BtnColor_Click"
-                                 Width="20" Height="30" BorderBrush="Yellow"/>
-                <Button Background="OrangeRed" Margin="138,17,137,19" Padding="0" x:Name="btnColor10" Click="BtnColor_Click"
-                                Width="20" Height="30" BorderBrush="OrangeRed"/>
+                                Width="20" Height="30" BorderBrush="Gray" Grid.ColumnSpan="2"/>
+                <Button Background="Red" Margin="45.5,17,190,19" x:Name="btnColor3" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Red" Grid.Column="1"/>
+                <Button Background="Red" Margin="45.5,17,190,19" x:Name="btnColor4" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Red" Grid.Column="1"/>
+                <Button Background="Violet" Margin="73.5,17,162,19" Padding="0" x:Name="btnColor5" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Violet" Grid.Column="1"/>
+                <Button Background="Blue" Margin="198.5,17,37,19" Padding="0" x:Name="btnColor6" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Blue" Grid.Column="1"/>
+                <Button Background="Teal" Margin="173.5,17,62,19" Padding="0" x:Name="btnColor7" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="Teal" Grid.Column="1"/>
+                <Button Background="Green" Margin="148.5,17,87,19" Padding="0" x:Name="btnColor8" Click="BtnColor_Click"
+                                 Width="20" Height="30" BorderBrush="Green" Grid.Column="1"/>
+                <Button Background="Yellow" Margin="123.5,17,112,19" Padding="0" x:Name="btnColor9" Click="BtnColor_Click"
+                                 Width="20" Height="30" BorderBrush="Yellow" Grid.Column="1"/>
+                <Button Background="OrangeRed" Margin="98.5,17,137,19" Padding="0" x:Name="btnColor10" Click="BtnColor_Click"
+                                Width="20" Height="30" BorderBrush="OrangeRed" Grid.Column="1"/>
             </Grid>
 
 
