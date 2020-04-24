@@ -17,7 +17,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Comics" 
         Width="1100" Height="600">
-    
+
     <Grid>
         <Grid.RowDefinitions>
 
@@ -85,7 +85,7 @@
             </Button>
             <Button x:Name="Fix" Click="FixButton_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
                     ToolTip="Нажмите для фиксации кадров из видео" Margin="495,21,15,50" Height="40" Width="40"
-                    Background="#ff6e40" BorderBrush="#ff6e40">
+                    Background="#ff6e40" BorderBrush="#ff6e40" IsEnabled="False">
                 <materialDesign:PackIcon Kind="Done" Height="24" Width="24" />
             </Button>
             <TextBlock Text="Громкость" Margin="295,35,200,62" Height="27" />
@@ -113,9 +113,9 @@
                        VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="22" Width="265" Margin="10,0,0,10">
                   Количество сделанных скриншотов
             </TextBlock>
-            <TextBlock x:Name="textBlock1" FontSize="16"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="46" Width="82" Margin="280,0,-27,0">
-            </TextBlock>
+            <TextBox x:Name="TextBox1" FontSize="16"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="30" Width="21" Margin="275,0,0,10">
+            </TextBox>
         </Grid>
 
     </Grid>

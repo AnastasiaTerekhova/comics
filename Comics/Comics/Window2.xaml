@@ -41,12 +41,12 @@
                 <RowDefinition Height="102*"/>
                 <RowDefinition Height="73"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0" >
+            <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
                               Margin="5,5" >
-                    <Grid Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" >
-                        <InkCanvas x:Name="canvas" ResizeEnabled="True" Margin="10,10" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Image x:Name="imageInCanvas" Height="auto" Width="auto"  />
+                     <Grid x:Name="GridWithCanvas" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" >
+                        <InkCanvas x:Name="Canvas" ResizeEnabled="True" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image x:Name="ImageInCanvas" Height="auto" Width="auto"  />
                         </InkCanvas>
                     </Grid>
                 </ScrollViewer>
@@ -70,7 +70,7 @@
             </Grid>
             <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="3" Background="#ffab91">
                 <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
-                            Margin="5,5" >
+                            Margin="5,5,5,5" >
                     <StackPanel x:Name="stackPanel" Margin="3,3,3,3" Orientation="Horizontal"/>
                 </ScrollViewer>
             </Grid>
@@ -116,8 +116,8 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="28"/>
+                    <ColumnDefinition Width="67"/>
 
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="TextBoxSize" Text="5" FontSize="20" Foreground="Black" Grid.Row="1" Padding="7" Margin="0,0,10,6" Grid.Column="1" />

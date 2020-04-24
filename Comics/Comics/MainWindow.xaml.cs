@@ -31,14 +31,18 @@ namespace Comics
     {
         public delegate void OnAdd(ImageSource img);
         public event OnAdd AddEvent;
-        System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-       
+        DispatcherTimer timer = new DispatcherTimer();
+        VideoPlayer videoPlayer;
+
         public MainWindow()
         {
             InitializeComponent();
             timer.Tick += new EventHandler(timerTick);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-          
+            videoPlayer = new VideoPlayer(media1, timer);
+
+            TextBox1.Text = "0";
+
         }
         private void timerTick(object sender, object e)
         {
@@ -48,32 +52,26 @@ namespace Comics
 
         private void downloadButton_Click(object sender, RoutedEventArgs e)
         {
-           // media1.Source = new Uri(textBox1.Text);
-            OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.Filter = "Video files (*.MP4, *.AVI, *.MKW, *.WMV)|*.mp4;*.avi;*.mkv; *.wmv"; 
-            if (openDialog.ShowDialog() == true)
-            {
-                media1.Source = new Uri(openDialog.FileName);
-
-            }
-            
+            // media1.Source = new Uri(textBox1.Text);
+            videoPlayer.DownloadVideo();
         }
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            media1.Play();
-            timer.Start();
+            videoPlayer.Play();
+            if (videoPlayer.Media.Source != null)
+            {
+                Fix.IsEnabled = true;
+            }
         }
 
         private void pauseButton_Click(object sender, RoutedEventArgs e)
         {
-            media1.Pause();
-            timer.Stop();
+            videoPlayer.Pause();
         }
 
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
-            media1.Stop();
-            timer.Stop();
+            videoPlayer.Stop();
         }
 
         private void media1_MediaOpened(object sender, RoutedEventArgs e)
@@ -99,25 +97,17 @@ namespace Comics
 
         private void FixButton_Click(object sender, RoutedEventArgs e)
         {
-            int width = media1.NaturalVideoWidth;
-            int height = media1.NaturalVideoHeight;
-            var bitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
-            var vb = new VisualBrush(media1);
-            DrawingVisual dv = new DrawingVisual();
-            using (DrawingContext dc = dv.RenderOpen())
-            {
-                dc.DrawRectangle(vb, null, new Rect(new Size(width, height)));
-            }
-            bitmap.Render(dv);
-            image.Source = bitmap;
-
+            image.Source = videoPlayer.MakeScreenShot();
             AddEvent.Invoke(image.Source);
+
+            int n = Convert.ToInt32(TextBox1.Text);
+            n++;
+            TextBox1.Text = n.ToString();
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            
         }
 
 
