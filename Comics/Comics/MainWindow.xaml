@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Comics"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+       
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -15,13 +16,15 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Comics" 
-        MinWidth="1050" MinHeight="550"
-        >
+        Width="1100" Height="600">
+    
     <Grid>
         <Grid.RowDefinitions>
 
-            <RowDefinition Height="350*"/>
-            <RowDefinition Height="110*"/>
+            <RowDefinition Height="395*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="550*"/>
@@ -34,54 +37,80 @@
                 <RowDefinition Height="284*"/>
                 <RowDefinition Height="73*"/>
             </Grid.RowDefinitions>
+            <Rectangle Fill="#263238" Height="auto" Margin="15" Grid.RowSpan="2">
+                <Rectangle.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Polygon Fill="#ff6e40" Opacity="0.3" Points="10, 10, 150, 110, 10, 190" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="214,82,214,42">
+                <Polygon.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Polygon.Effect>
+            </Polygon>
+
             <MediaElement x:Name="media1" MediaOpened="media1_MediaOpened" UnloadedBehavior="Manual" LoadedBehavior="Manual" 
                           Height="auto" Margin="15" Grid.RowSpan="2" ScrubbingEnabled="True"
                           />
 
-            <Slider x:Name="slider2" Margin="28,0,34,54"  
+            <Slider x:Name="slider2" Margin="28,15,34,54"  
                     ValueChanged="slider2_ValueChanged"  Opacity="0" Grid.Row="1" />
-            <Slider x:Name="sliderback2" Margin="28,1,34,54" IsHitTestVisible="False" Grid.Row="1" />
-            <TextBlock x:Name="time" Text="00:00" HorizontalAlignment="Right" 
-                    Margin="0,300,34,54" Width="58"  FontSize="17" Grid.RowSpan="2" />
+            <Slider x:Name="sliderback2" Margin="28,10,34,54" IsHitTestVisible="False" Grid.Row="1" />
+            <TextBlock x:Name="time" Text="00:00" HorizontalAlignment="Right"  VerticalAlignment="Bottom"
+                    Margin="0,0,34,70" Width="58"  FontSize="17" Grid.RowSpan="2" />
         </Grid>
 
-        <Grid Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Grid.Row="2">
+        <Grid Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="2" Background="#ffab91" ></Grid>
+        <Grid Grid.Column="2" Grid.ColumnSpan="1" Grid.RowSpan="1" Grid.Row="2" Background="#ffab91" ></Grid>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" Grid.Row="1" >
             <Button x:Name="download" Click="downloadButton_Click" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                             Height="40" Width="40" 
+                             Height="40" Width="40" Background="#ff6e40" BorderBrush="#ff6e40"
                     ToolTip="Нажмите для загрузки видео" Margin="26,21,483,50">
-                <materialDesign:PackIcon Kind="Download" Height="24" Width="24" />
+                <materialDesign:PackIcon Kind="upload" Height="24" Width="24" />
             </Button>
             <Button x:Name="playButton" Click="playButton_Click" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                            ToolTip="Воспроизведение" Margin="106,21,404,50" Height="40" Width="40">
+                            ToolTip="Воспроизведение" Margin="106,21,404,50" Height="40" Width="40"
+                    Background="#ff6e40" BorderBrush="#ff6e40">
                 <materialDesign:PackIcon Kind="play" Height="24" Width="24" />
             </Button>
             <Button x:Name="pauseButton" Click="pauseButton_Click" Style="{StaticResource MaterialDesignFloatingActionButton}" 
-                            ToolTip="Пауза" Margin="158,21,352,50" Height="40" Width="40">
+                            ToolTip="Пауза" Margin="158,21,352,50" Height="40" Width="40"
+                    Background="#ff6e40" BorderBrush="#ff6e40">
                 <materialDesign:PackIcon Kind="Pause" Height="24" Width="24" />
             </Button>
             <Button x:Name="stopButton" Click="stopButton_Click" Style="{StaticResource MaterialDesignFloatingActionButton}" 
-                            ToolTip="Стоп" Margin="208,21,302,50" Height="40" Width="40">
+                            ToolTip="Стоп" Margin="208,21,302,50" Height="40" Width="40"
+                    Background="#ff6e40" BorderBrush="#ff6e40">
                 <materialDesign:PackIcon Kind="Stop" Height="24" Width="24" />
             </Button>
             <Button x:Name="Fix" Click="FixButton_Click" Style="{StaticResource MaterialDesignFloatingActionButton}"
-                    ToolTip="Нажмите для фиксации кадров из видео" Margin="495,21,15,50" Height="40" Width="40">
+                    ToolTip="Нажмите для фиксации кадров из видео" Margin="495,21,15,50" Height="40" Width="40"
+                    Background="#ff6e40" BorderBrush="#ff6e40">
                 <materialDesign:PackIcon Kind="Done" Height="24" Width="24" />
             </Button>
-            <TextBlock Text="Громкость" Margin="304,35,205,57" />
+            <TextBlock Text="Громкость" Margin="295,35,200,62" Height="27" />
+
             <Slider x:Name="slider1" 
                     Height="20" Width="100"  Margin="378,29,127,63"
                     Minimum="0" Maximum="1" Value="0.5" ValueChanged="slider1_ValueChanged" />
         </Grid>
 
-        <Grid Grid.ColumnSpan="3" Grid.RowSpan="2"  Margin="10" >
-            <Button x:Name="Next" Click="NextButton_Click" Content="Далее" VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                    Width="100" Height="35" Margin="0,0,52,30"/>
+        <Grid Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1" Grid.Column="1">
+            <Button x:Name="Next" Click="NextButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                    Width="40" Height="40"  Margin="0,0,40,15" ToolTip="Дальше"
+                    Background="#ff6e40" BorderBrush="#ff6e40">
+                <materialDesign:PackIcon Kind="forward" Height="24" Width="24" />
+            </Button>
         </Grid>
-        <Grid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="1">
+        <Grid Grid.Column="2" Grid.Row="0" Grid.RowSpan="1">
             <Image x:Name="image" 
-                    Height="auto" Width="auto" Margin="5,20,10,73"/>
+                    Height="auto" Width="auto" Margin="5,20,10,73">
+                <Image.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Image.Effect>
+            </Image>
             <TextBlock FontSize="15"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="22" Width="253" Margin="10,0,0,10">
+                       VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="22" Width="265" Margin="10,0,0,10">
                   Количество сделанных скриншотов
             </TextBlock>
             <TextBlock x:Name="textBlock1" FontSize="16"

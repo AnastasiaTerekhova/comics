@@ -17,23 +17,22 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Size = System.Windows.Size;
 using Microsoft.Win32;
+using System.Windows.Media.Composition;
+using System.Windows.Media.Effects;
+
 
 namespace Comics
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-   
 
     public partial class MainWindow : Window
     {
         public delegate void OnAdd(ImageSource img);
         public event OnAdd AddEvent;
-
-     
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
-        
-
+       
         public MainWindow()
         {
             InitializeComponent();
@@ -41,8 +40,7 @@ namespace Comics
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
           
         }
-
-            private void timerTick(object sender, object e)
+        private void timerTick(object sender, object e)
         {
             time.Text = media1.Position.ToString(@"mm\:ss");
             sliderback2.Value = media1.Position.TotalSeconds;

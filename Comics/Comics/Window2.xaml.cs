@@ -29,7 +29,7 @@ namespace Comics
         Button oldButton;
         Brush oldBrush;
         Thickness oldThickness = new Thickness(1);
-        Thickness newThickness = new Thickness(5);
+        Thickness newThickness = new Thickness(2);
         int sizePen = 5;
         Image currentImg = null;
        
@@ -94,7 +94,6 @@ namespace Comics
                 canvas.DefaultDrawingAttributes.Color = (oldButton.Background as SolidColorBrush).Color;
                 getSizePen(sizePen);
             }
-            
             isPencil = !isPencil;
         }
 
@@ -166,6 +165,10 @@ namespace Comics
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mainWindow.Close();
+        }
+
+        private void btn_AddFigure_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
