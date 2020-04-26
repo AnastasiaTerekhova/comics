@@ -1,0 +1,11 @@
+<Grid  xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>	
+	<Grid.ColumnDefinitions>
+		<ColumnDefinition Width="*" />
+		<ColumnDefinition Width="Auto" />
+		<ColumnDefinition Width="*" />
+	</Grid.ColumnDefinitions>
+	<GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
+		HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+	<Canvas Name="canvas1" ClipToBounds="True" Grid.Column="0" />
+	<Canvas Name="canvas2" ClipToBounds="True" Grid.Column="2" />
+</Grid>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="Comics.WindowCollage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Comics"
+        mc:Ignorable="d"
+        Title="WindowCollage" Height="450" Width="800" Closing="Window_Closing">
+    <Grid>
+        <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Background="#ffab91" Height="100" Margin="132,310,119,9">
+            <ScrollViewer x:Name="scrollViewerCollages" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
+                        Margin="5,5,5,5" >
+                <StackPanel x:Name="stackPanelCollages" Margin="3,3,3,3" Orientation="Horizontal" />
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Background="#ffab91" Margin="678,21,10,124">
+            <ScrollViewer x:Name="scrollViewerImages" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible"  
+                        Margin="5,5,5,5" >
+                <StackPanel x:Name="stackPanelImages" Margin="3,3,3,3" Orientation="Vertical" />
+            </ScrollViewer>
+        </Grid>
+        <Button x:Name="btnV1" Content="Вариант 1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="100" Click="btnV1_Click"/>
+        <Button x:Name="btnV2" Content="Вариант 2" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="100" Click="btnV2_Click"/>
+        <Button x:Name="btnV3" Content="Вариант 3" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="100" Click="btnV3_Click"/>
+        <Button x:Name="btnV4" Content="Вариант 4" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" Width="100" Click="btnV4_Click"/>
+        <Label x:Name="label" Content="Добавить коллаж:" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="117"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="265" Margin="132,21,0,0" VerticalAlignment="Top" Width="541">
+            <Grid x:Name="gridEditor" >
+            </Grid>
+        </Border>
+        <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Left" Margin="678,339,0,0" VerticalAlignment="Top" Width="104" Click="btnSave_Click"/>
+        <Button x:Name="btnBack" Content="Назад" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
+    </Grid>
+</Window>

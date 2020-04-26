@@ -1,0 +1,31 @@
+<Grid  xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="*"></RowDefinition>
+		<RowDefinition Height="Auto"></RowDefinition>
+		<RowDefinition Height="*"></RowDefinition>
+	</Grid.RowDefinitions>
+	<GridSplitter Grid.Row="1" Grid.ColumnSpan="3" Height="3"
+		HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+	<Grid Grid.Row="0">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="20*" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="30*" />
+		</Grid.ColumnDefinitions>
+		<Canvas Name="canvas1" ClipToBounds="True" Grid.Column="0" />
+		<GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+			HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+		<Canvas Name="canvas2" ClipToBounds="True" Grid.Column="2" />
+	</Grid>
+	<Grid Grid.Row="2">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="30*" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="20*" />
+		</Grid.ColumnDefinitions>
+		<Canvas Name="canvas3" ClipToBounds="True" Grid.Column="0" />
+		<GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+			HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+		<Canvas Name="canvas4" ClipToBounds="True" Grid.Column="2" />
+	</Grid>
+</Grid>

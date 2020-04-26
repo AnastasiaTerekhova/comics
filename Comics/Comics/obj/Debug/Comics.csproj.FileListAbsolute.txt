@@ -22,3 +22,5 @@ C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\Comics.exe
 C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\Comics.pdb
 C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\Window2.g.cs
 C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\Window2.baml
+C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\WindowCollage.g.cs
+C:\Users\User\Desktop\Курсовой\Comics\Comics\obj\Debug\WindowCollage.baml

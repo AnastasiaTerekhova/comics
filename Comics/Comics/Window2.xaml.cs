@@ -22,6 +22,7 @@ namespace Comics
     public partial class Window2 : Window
     {
         MainWindow mainWindow = new MainWindow();
+        WindowCollage windowCollage = new WindowCollage();
         //Brush brush = new SolidColorBrush(Color.FromArgb(120, 128, 128, 128));
         //Brush notBrush = Brushes.Transparent;        
         Button oldButton;
@@ -165,6 +166,13 @@ namespace Comics
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void Btn_Collage_Click(object sender, RoutedEventArgs e)
+        {
+            Hide(); // скрыли текущую форму
+            windowCollage.ShowDialog(stackPanel); // открыли форму коллажа
+            Show(); // когда коллаж закрылся, вернулись сюда
         }
     }
 }
