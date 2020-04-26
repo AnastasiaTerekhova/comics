@@ -88,7 +88,7 @@
                     Background="#ff6e40" BorderBrush="#ff6e40" IsEnabled="False">
                 <materialDesign:PackIcon Kind="Done" Height="24" Width="24" />
             </Button>
-            <TextBlock Text="Громкость" Margin="295,35,200,62" Height="27" />
+            <TextBlock Text="Громкость" Margin="295,35,200,62" Height="27" Width="80" />
 
             <Slider x:Name="slider1" 
                     Height="20" Width="100"  Margin="378,29,127,63"

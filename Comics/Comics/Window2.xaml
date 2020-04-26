@@ -44,9 +44,9 @@
             <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="3" Grid.Row="0">
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
                               Margin="5,5" >
-                     <Grid x:Name="GridWithCanvas" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" >
-                        <InkCanvas x:Name="Canvas" ResizeEnabled="True" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Image x:Name="ImageInCanvas" Height="auto" Width="auto"  />
+                    <Grid x:Name="GridWithCanvas" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="3" Grid.Row="0" >
+                        <InkCanvas x:Name="Canvas" AllowDrop="True" Drop="InkCanvas_Drop" ResizeEnabled="True" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image x:Name="ImageInCanvas" Height="auto" Width="auto"/>
                         </InkCanvas>
                     </Grid>
                 </ScrollViewer>
@@ -60,7 +60,7 @@
                     <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
                 </Button>
                 <Button ToolTip="Удалить скриншот" Height="40" Width="40" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                    Margin="20,0,0,0" Background="#ff6e40" BorderBrush="#ff6e40" >
+                    Margin="20,0,0,0" Background="#ff6e40" BorderBrush="#ff6e40" Click="Button_Click_2" >
                     <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
                 </Button>
                 <Button ToolTip="Сохранить" Height="40" Width="40" Margin="300,0,0,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
@@ -87,11 +87,12 @@
                         Background="#ff6e40" BorderBrush="#ff6e40">
                     <materialDesign:PackIcon Kind="TextShadow" Height="20" Width="20"/>
                 </Button>
-                <Button x:Name="btn_AddFigure" Click="btn_AddFigure_Click" Height="35" Width="35"
+                <Button x:Name="btn_Cleaning" Click="btn_Cleaning_Click" Height="35" Width="35"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
-                        Margin="10,10,60,10" ToolTip="Вставить фигуру чат"
+                        Margin="10,10,60,10" ToolTip="Очистить"
                         Background="#ff6e40" BorderBrush="#ff6e40">
-                    <materialDesign:PackIcon Kind="Chatbubble" Height="20" Width="20"/>
+
+                    <materialDesign:PackIcon Kind="Cleaning" Height="20" Width="20"/>
                 </Button>
                 <Button x:Name="btnPlus" Click="BtnPlus_Click" Height="35" Width="35"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
@@ -99,7 +100,8 @@
                         Background="#ff6e40" BorderBrush="#ff6e40">
                     <materialDesign:PackIcon Kind="PlusBox" Height="20" Width="20" />
                 </Button>
-
+                <TextBlock x:Name="TextBoxSize" TextAlignment="Left" Text="5" FontSize="20" Width="30" Height="30" 
+                           Foreground="Black" Margin="222,40,57,36" />
                 <Button x:Name="btnMinus" Click="BtnMinus_Click" Height="35" Width="35"
                         Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         Margin="10, 10, -220, 10"
@@ -116,11 +118,11 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="28"/>
-                    <ColumnDefinition Width="67"/>
+                    <ColumnDefinition Width="45"/>
+                    <ColumnDefinition Width="58"/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="TextBoxSize" Text="5" FontSize="20" Foreground="Black" Grid.Row="1" Padding="7" Margin="0,0,10,6" Grid.Column="1" />
+
             </Grid>
 
             <Grid Grid.Column="1" Grid.RowSpan="1" Grid.Row="1">
@@ -145,6 +147,19 @@
                                  Width="20" Height="30" BorderBrush="Yellow"/>
                 <Button Background="OrangeRed" Margin="138,32,137,33" Padding="0" x:Name="btnColor10" Click="BtnColor_Click"
                                 Width="20" Height="30" BorderBrush="OrangeRed"/>
+            </Grid>
+            <Grid Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="1" Background="#ffab91f7">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Users\User\Desktop\Comics\Comics\Comics\Resources\img2.png" Width="150" Height="110" Margin="0,10,0,10" 
+                               MouseDown="Image_MouseDown" Stretch="UniformToFill"/>
+                        <Image Source="C:\Users\User\Desktop\Comics\Comics\Comics\Resources\img3.png" Width="150" Height="110" Margin="0,10,0,10" 
+                               MouseDown="Image_MouseDown" Stretch="UniformToFill"/>
+                        <Image Source="C:\Users\User\Desktop\Comics\Comics\Comics\Resources\img1.png" Width="150" Height="110" Margin="0,10,0,10" 
+                               MouseDown="Image_MouseDown" Stretch="UniformToFill"/>
+
+                    </StackPanel>
+                </ScrollViewer>
             </Grid>
 
 

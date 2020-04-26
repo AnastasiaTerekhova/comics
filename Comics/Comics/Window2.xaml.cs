@@ -30,7 +30,7 @@ namespace Comics
         Palette palette;
         Images draw;
 
-
+        public static Image global_sender;
         public Window2()
         {
             InitializeComponent();
@@ -60,6 +60,12 @@ namespace Comics
             {
                 draw.SaveCurrentImage();
                 draw.SetCurrentImg(sender as Image);
+            }
+            var images = Canvas.Children.OfType<Image>().ToList(); //Все элементы типа Image в canvas1
+            foreach (var image in images)
+            {
+                if (image.Name == "dialog") //Соответствие на имя.
+                    Canvas.Children.Remove(image); //Удаляем
             }
         }
 
@@ -103,10 +109,43 @@ namespace Comics
             mainWindow.Close();
         }
 
-        private void btn_AddFigure_Click(object sender, RoutedEventArgs e)
+        //перемещение картинки 
+        private void Image_Drop(object sender, DragEventArgs e)
         {
+            ((Image)sender).Source = global_sender.Source;
+        }
+
+        //Перемещение катинки
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // sender – объект, на котором произошло данное событие.
+            Image lbl = sender as Image;
+            global_sender = lbl;
+            // Создаем источник.
+            // Копируем содержимое метки Drop.
+            // 1 параметр: Элемент управления, который будет источником.
+            // 2 параметр: Данные, которые будут перемещаться.
+            // 3 параметр: Эффект при переносе.
+            DragDrop.DoDragDrop(lbl, lbl.Source, DragDropEffects.Copy);
+        }
+
+        //создает элемент Image в InkCanvas
+        void InkCanvas_Drop(object sender, DragEventArgs e)
+        {
+            var s = sender as InkCanvas;
+            Image img = new Image();
+            img.Name = "dialog";
+            img.Source = global_sender.Source;
+            img.Width = global_sender.Width;
+            img.Height = global_sender.Height;
+            var poz = e.GetPosition((InkCanvas)sender);
+            Thickness p = new Thickness(poz.X, poz.Y, 0, 0);
+            img.Margin = p;
+            Canvas.Children.Add(img);
 
         }
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -116,6 +155,16 @@ namespace Comics
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btn_Cleaning_Click(object sender, RoutedEventArgs e)
+        {
+            this.Canvas.Strokes.Clear();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

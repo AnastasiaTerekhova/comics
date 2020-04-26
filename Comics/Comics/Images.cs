@@ -42,7 +42,7 @@ namespace Comics
             int h = (int)Math.Max(ImageInCanvas.Source.Height, Math.Ceiling(GridWithCanvas.RenderSize.Height));
             RenderTargetBitmap rtb = new RenderTargetBitmap(w, h, 96d, 96d, PixelFormats.Default);
             rtb.Render(Canvas);
-            var pos = Canvas.TranslatePoint(Point(0, 0), Canvas.Parent as UIElement);
+            var pos = Canvas.TranslatePoint(new System.Windows.Point(0, 0), Canvas.Parent as UIElement);
             var cb = new CroppedBitmap(rtb, new Int32Rect((int)Math.Ceiling(pos.X), (int)Math.Ceiling(pos.Y), (int)Math.Ceiling(ImageInCanvas.Source.Width), (int)ImageInCanvas.Source.Height));
             currentImg.Source = cb;
             Canvas.Strokes.Clear();
