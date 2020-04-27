@@ -59,7 +59,6 @@ namespace Comics
                 BorderBrush = new SolidColorBrush(Color.FromRgb(5, 5, 5)),
                 Margin = new Thickness(20, 20, 0, 0)
             };
-
             Canvas.Children.Add(tb);
 
             tb.Focus();

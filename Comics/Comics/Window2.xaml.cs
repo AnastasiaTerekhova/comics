@@ -77,7 +77,6 @@ namespace Comics
 
         private void BtnColor_Click(object sender, RoutedEventArgs e)
         {
-            //if (oldButton == sender) return;
             palette.ChangeColor(sender as Button);
         }
 
@@ -110,12 +109,6 @@ namespace Comics
             mainWindow.Close();
         }
 
-        //перемещение картинки 
-        private void Image_Drop(object sender, DragEventArgs e)
-        {
-            ((Image)sender).Source = global_sender.Source;
-        }
-
         //Перемещение катинки
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -143,7 +136,6 @@ namespace Comics
             Thickness p = new Thickness(poz.X, poz.Y, 0, 0);
             img.Margin = p;
             Canvas.Children.Add(img);
-
         }
 
 

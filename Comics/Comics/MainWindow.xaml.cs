@@ -55,6 +55,7 @@ namespace Comics
             // media1.Source = new Uri(textBox1.Text);
             videoPlayer.DownloadVideo();
         }
+
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             videoPlayer.Play();

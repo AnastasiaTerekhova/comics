@@ -67,9 +67,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Collage.cs" />
+    <Compile Include="CollagePreview.cs" />
     <Compile Include="Images.cs" />
     <Compile Include="InstrumentsMenu.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="TempelateLoader.cs" />
     <Compile Include="VideoPlayer.cs" />
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>

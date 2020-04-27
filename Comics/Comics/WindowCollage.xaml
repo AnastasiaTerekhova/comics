@@ -4,31 +4,88 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Comics"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="WindowCollage" Height="450" Width="800" Closing="Window_Closing">
+        Title="WindowCollage" Width="1100" Height="600" Closing="Window_Closing">
     <Grid>
-        <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Background="#ffab91" Height="100" Margin="132,310,119,9">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="150*"/>
+            <ColumnDefinition Width="64*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="429*"/>
+            <RowDefinition Height="140*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="1" Grid.Row="1" Background="#ffab91">
             <ScrollViewer x:Name="scrollViewerCollages" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"  
                         Margin="5,5,5,5" >
                 <StackPanel x:Name="stackPanelCollages" Margin="3,3,3,3" Orientation="Horizontal" />
             </ScrollViewer>
         </Grid>
-        <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Background="#ffab91" Margin="678,21,10,124">
+        <Grid Grid.ColumnSpan="1" Grid.Column="2" Grid.RowSpan="1" Grid.Row="0" >
             <ScrollViewer x:Name="scrollViewerImages" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible"  
                         Margin="5,5,5,5" >
                 <StackPanel x:Name="stackPanelImages" Margin="3,3,3,3" Orientation="Vertical" />
             </ScrollViewer>
         </Grid>
-        <Button x:Name="btnV1" Content="Вариант 1" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="100" Click="btnV1_Click"/>
-        <Button x:Name="btnV2" Content="Вариант 2" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="100" Click="btnV2_Click"/>
-        <Button x:Name="btnV3" Content="Вариант 3" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Width="100" Click="btnV3_Click"/>
-        <Button x:Name="btnV4" Content="Вариант 4" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" Width="100" Click="btnV4_Click"/>
-        <Label x:Name="label" Content="Добавить коллаж:" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" Width="117"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="265" Margin="132,21,0,0" VerticalAlignment="Top" Width="541">
-            <Grid x:Name="gridEditor" >
-            </Grid>
-        </Border>
-        <Button x:Name="btnSave" Content="Сохранить" HorizontalAlignment="Left" Margin="678,339,0,0" VerticalAlignment="Top" Width="104" Click="btnSave_Click"/>
-        <Button x:Name="btnBack" Content="Назад" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" Width="75" Click="btnBack_Click"/>
+        <Grid Grid.Column="0">
+            <Image Source="C:\Users\User\Desktop\Курсовой\Comics\Comics\Resources\1.png" Width="70" Height="60" Margin="156,83,10,286">
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.5"></DropShadowEffect>
+                </Image.Effect>
+            </Image>
+            <Button x:Name="btnV1" HorizontalAlignment="Left" ToolTip="Добавить" Margin="171,148,0,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    VerticalAlignment="Top" Height="40" Width="40" Click="btnV1_Click">
+                <materialDesign:PackIcon Kind="FiberManualRecord" Height="24" Width="24" />
+            </Button>
+            <Image Source="C:\Users\User\Desktop\Курсовой\Comics\Comics\Resources\2.png" Width="70" Height="60" Margin="10,83,156,286">
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.5"></DropShadowEffect>
+                </Image.Effect>
+            </Image>
+            <Button x:Name="btnV2" HorizontalAlignment="Left" ToolTip="Добавить" Margin="25,148,0,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    VerticalAlignment="Top" Height="40" Width="40" Click="btnV2_Click">
+                <materialDesign:PackIcon Kind="FiberManualRecord" Height="24" Width="24" />
+            </Button>
+            <Image Source="C:\Users\User\Desktop\Курсовой\Comics\Comics\Resources\3.png" Width="70" Height="60" Margin="156,244,10,125">
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.5"></DropShadowEffect>
+                </Image.Effect>
+            </Image>
+            <Button x:Name="btnV3" HorizontalAlignment="Left" ToolTip="Добавить" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    VerticalAlignment="Top" Height="40" Width="40" Click="btnV3_Click" Margin="171,309,5,5">
+                <materialDesign:PackIcon Kind="FiberManualRecord" Height="24" Width="24" />
+            </Button>
+            <Image Source="C:\Users\User\Desktop\Курсовой\Comics\Comics\Resources\4.png" Width="70" Height="60" Margin="10,244,156,125">
+                <Image.Effect>
+                    <DropShadowEffect Opacity="0.5"></DropShadowEffect>
+                </Image.Effect>
+            </Image>
+            <Button x:Name="btnV4" HorizontalAlignment="Left" ToolTip="Добавить" Margin="28,309,0,0" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    VerticalAlignment="Top" Height="40" Width="40" Click="btnV4_Click">
+                <materialDesign:PackIcon Kind="FiberManualRecord" Height="24" Width="24" />
+            </Button>
+            <Label x:Name="label" Content="Добавить коллаж:" HorizontalAlignment="Center" Margin="10,10" FontSize="17" VerticalAlignment="Top" Width="163" Height="35"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="1" Grid.Column="1" Grid.RowSpan="1" Grid.Row="0">
+            <Border BorderBrush="Black" BorderThickness="1"  Height="410" Width="560" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid x:Name="gridEditor" >
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.ColumnSpan="1" Grid.Column="2" Grid.RowSpan="1" Grid.Row="2" Background="#ffab91">
+            <Button x:Name="btnSave" ToolTip="Сохранить" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                VerticalAlignment="Center" Click="btnSave_Click" Height="40" Width="40">
+                <materialDesign:PackIcon Kind="ContentSave" Height="24" Width="24" />
+            </Button>
+        </Grid>
+        <Grid Grid.ColumnSpan="1" Grid.Column="0" Grid.RowSpan="1" Grid.Row="2" Background="#ffab91">
+            <Button x:Name="btnBack" ToolTip="Назад" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionButton}"
+                 VerticalAlignment="Center" Width="40" Height="40" Click="btnBack_Click">
+                <materialDesign:PackIcon Kind="reply" Height="24" Width="24" />
+            </Button>
+        </Grid>
     </Grid>
 </Window>

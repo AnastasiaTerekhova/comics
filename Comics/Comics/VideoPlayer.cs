@@ -45,6 +45,7 @@ namespace Comics
             bitmap.Render(dv);
             return bitmap;
         }
+
         public void Play()
         {
             Media.Play();

@@ -107,7 +107,7 @@ namespace Comics
                             gc.ColumnDefinitions[2].Width = (GridLength)curClg.Params["RightLen"];
 
                             goto case "GetCanvaces"; // переход к загрузке канвасов
-                            break;
+                           
 
                         case "T2": // косой
                             gc.RowDefinitions[0].Height = (GridLength)curClg.Params["TopLen"];
@@ -144,14 +144,14 @@ namespace Comics
                             gc.ColumnDefinitions[2].Width = (GridLength)curClg.Params["RightLen"];
 
                             goto case "GetCanvaces"; // переход к загрузке канвасов
-                            break;
+                            
 
                         case "T4":
                             gc.RowDefinitions[0].Height = (GridLength)curClg.Params["TopLen"];
                             gc.RowDefinitions[2].Height = (GridLength)curClg.Params["DownLen"];
 
                             goto case "GetCanvaces"; // переход к загрузке канвасов
-                            break;
+                            
 
                         case "GetCanvaces": // это костыльная ветка, в которую попадают все, кроме T2, он отличается, поэтому для него всё в нём делается
                             //заполняем список канвасов
@@ -176,7 +176,7 @@ namespace Comics
                             SetImageToCanvas(curClg.Images[number], canvas);
                         else
                         {
-                            // если нет изображения, то ставим затычку, ибо иначе ничего не работает и канвас не обрабатывает события
+                            // если нет изображения, то ставим затычку, ибо иначе канвас не обрабатывает события
                             // создаём битмап и закрашиваем его белым, преобразовываем в впфный битмап
                             using (var bm = new System.Drawing.Bitmap((int)SystemParameters.PrimaryScreenWidth, (int)SystemParameters.PrimaryScreenHeight))
                             {
@@ -380,7 +380,7 @@ namespace Comics
         /// Обновление панели со списком коллажей
         /// </summary>
         void UpdateCollagesPanel()
-        {
+         {
             // очистка
             stackPanelCollages.Children.Clear();
 
@@ -388,36 +388,8 @@ namespace Comics
             int i = 0;
             foreach (var clg in Collages)
             {
-                //создаём границу для очередного, чтобы было красиво
-                var brdr = new Border()
-                {
-                    Margin = new Thickness(3, 3, 3, 3),
-                    BorderThickness = new Thickness(2)
-                };
-                //получаем превьюху, а если её нет, то используем из ресурсов картинку-заглушку
-                ImageSource src = clg.Preview;
-                if (src == null)
-                {
-                    src = ConvertBtoBS(Properties.Resources.EmptyCollagePreview);
-                }
-                // создаём визуальный объект под превьюху и устанавливаем его параметры
-                var collage = new Image()
-                {
-                    Source = src,
-                    Width = 120,
-                    Height = 90
-                };
-                // устанавливаем цвет (для текущего красный, для остальных серый)
-                if (i++ == SelectedCollage)
-                    brdr.BorderBrush = Brushes.Red;
-                else
-                    brdr.BorderBrush = Brushes.Gray;
-                // обработчик клика на превьюху коллажа
-                collage.MouseDown += collage_MouseDown;
-                //оборачиваем превьюху в подготовленную рамку
-                brdr.Child = collage;
-                // рамку отправляем в ленту на форме
-                stackPanelCollages.Children.Add(brdr);
+                var preview = new CollagePreview(clg, i++ == SelectedCollage, collage_MouseDown);
+                stackPanelCollages.Children.Add(preview.GetVisualElement());
             }
         }
 
@@ -443,21 +415,13 @@ namespace Comics
         /// <param name="name">имя шаблона</param>
         void LoadTempelate(string name)
         {
-            // очистка области редактора и загрузка шаблона из файла
-            gridEditor.Children.Clear();
-            var reader = new System.IO.StreamReader(Environment.CurrentDirectory + "\\Tempelates\\" + name + ".xaml");
-            var gridContent = (Grid)System.Windows.Markup.XamlReader.Load(reader.BaseStream);
-            gridEditor.Children.Add(gridContent);
-
-            // Ищем разделители и вешаем им обработчик события смещения
-            foreach (var o in gridContent.Children)
-            {
-                var splitter = o as GridSplitter;
-                if (splitter != null)
-                {
-                    splitter.DragCompleted += GridSplitter_DragCompleted;
-                }
-            }
+         
+             // очистка области редактора и загрузка шаблона из файла
+             gridEditor.Children.Clear();
+             var loader = new TempelateLoader(name);
+             loader.SetEventHandlerOnSplitters(GridSplitter_DragCompleted);
+             gridEditor.Children.Add(loader.Content);
+            
         }
 
         private void GridSplitter_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
@@ -613,7 +577,7 @@ namespace Comics
         /// </summary>
         /// <param name="bitmap"></param>
         /// <returns></returns>
-        public BitmapSource ConvertBtoBS(System.Drawing.Bitmap bitmap)
+        public static BitmapSource ConvertBtoBS(System.Drawing.Bitmap bitmap)
         {
             var bitmapData = bitmap.LockBits(
                 new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
