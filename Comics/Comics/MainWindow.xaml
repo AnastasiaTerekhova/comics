@@ -16,7 +16,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Comics" 
-        Width="1100" Height="600">
+        MinWidth="1100" MinHeight="600">
 
     <Grid>
         <Grid.RowDefinitions>
